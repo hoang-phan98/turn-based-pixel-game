@@ -285,14 +285,14 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>623</x>
-      <y>399</y>
-      <w>42</w>
-      <h>63</h>
+      <x>651</x>
+      <y>385</y>
+      <w>105</w>
+      <h>189</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 Owns</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+    <additional_attributes>30.0;10.0;100.0;10.0;100.0;180.0;10.0;180.0;10.0;250.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
