@@ -37,9 +37,13 @@ public class Application {
 		Actor player = new Player("Player", '@', 1, 100);
 		world.addPlayer(player, gameMap, 5, 10);
 		
+		Item key = new Item("key", 'k');
+		
 		Grunt grunt = new Grunt("Mongo", player);
+		grunt.addItemToInventory(key);
 		gameMap.addActor(grunt, 0, 0);
 		Grunt grunt2 = new Grunt("Norbert", player);
+		grunt2.addItemToInventory(key);
 		gameMap.addActor(grunt2,  10, 10);
 		
 		Item rocketPlan = new Item("Rocket Plan", 'p');
