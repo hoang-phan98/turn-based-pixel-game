@@ -37,7 +37,7 @@ public class Application {
 		Actor player = new Player("Player", '@', 1, 100);
 		world.addPlayer(player, gameMap, 5, 10);
 		
-		Item key = new Item("key", 'k');
+		Item key = new Key("key", 'k');
 		
 		Grunt grunt = new Grunt("Mongo", player);
 		grunt.addItemToInventory(key);
