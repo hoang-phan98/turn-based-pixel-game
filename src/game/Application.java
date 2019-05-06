@@ -69,7 +69,6 @@ public class Application {
 		Ninja ninja = new Ninja("Kwab", player);
 		gameMap.addActor(ninja, 5, 5);
 		Goon goon = new Goon("Heckler", player);
-		goon.addItemToInventory(key);
 		gameMap.addActor(goon, 7, 7);
 		
 		Item rocketPlan = new Item("Rocket Plan", 'p');
