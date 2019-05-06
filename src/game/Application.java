@@ -66,6 +66,8 @@ public class Application {
 		gameMap.addActor(grunt, 0, 0);
 		Grunt grunt2 = new Grunt("Norbert", player);
 		gameMap.addActor(grunt2,  10, 10);
+		Ninja ninja = new Ninja("Kwab", player);
+		gameMap.addActor(ninja, 5, 5);
 		Goon goon = new Goon("Heckler", player);
 		goon.addItemToInventory(key);
 		gameMap.addActor(goon, 7, 7);
