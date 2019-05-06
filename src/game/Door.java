@@ -24,6 +24,7 @@ public class Door extends Ground {
 			if(item.toString() == "key") {
 				actor.removeItemFromInventory(item);
 				this.isLocked = false;
+				this.displayChar = '.';
 				return true;
 			}
 		}
