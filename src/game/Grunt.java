@@ -21,6 +21,12 @@ public class Grunt extends Actor {
 	private void addBehaviour(ActionFactory behaviour) {
 		actionFactories.add(behaviour);
 	}
+	
+	
+	@Override
+	protected IntrinsicWeapon getIntrinsicWeapon() {
+		return new IntrinsicWeapon(5, "slaps");
+	}
 
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
