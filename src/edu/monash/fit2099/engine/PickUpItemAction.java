@@ -12,7 +12,7 @@ public class PickUpItemAction extends Action {
 	 *
 	 * @param item the item to pick up
 	 */
-	PickUpItemAction(Item item) {
+	public PickUpItemAction(Item item) {
 		this.item = item;
 	}
 
