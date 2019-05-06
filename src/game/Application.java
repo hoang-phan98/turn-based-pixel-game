@@ -45,6 +45,9 @@ public class Application {
 		Grunt grunt2 = new Grunt("Norbert", player);
 		grunt2.addItemToInventory(key);
 		gameMap.addActor(grunt2,  10, 10);
+		Goon goon = new Goon("Heckler", player);
+		goon.addItemToInventory(key);
+		gameMap.addActor(goon, 7, 7);
 		
 		Item rocketPlan = new Item("Rocket Plan", 'p');
 		gameMap.addItem(rocketPlan, 6, 2);
