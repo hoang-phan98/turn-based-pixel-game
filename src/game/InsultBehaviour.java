@@ -15,7 +15,7 @@ public class InsultBehaviour extends Action implements ActionFactory {
 //	private Actor actor;
 	private Actor target;
 	private Random rand= new Random();
-	private Double chance = 100*rand.nextDouble();
+	private Double chance;
 	private String result;
 	private String[] listOfInsults = {"You will never succeed","You've gained weight","Your hairline is receeding"};
 	
@@ -36,14 +36,17 @@ public class InsultBehaviour extends Action implements ActionFactory {
 		if (rand.nextBoolean()) {
 			return actor + " misses " + target + ".";
 		}
-		if (chance<30) {
-			result = actor + " yells " + listOfInsults[0] + " and " +weapon.verb() + " " + target + " for " + damage + " damage.";
-		}
-		else if (chance<60) {
-			result = actor + " yells " + listOfInsults[1] + " and " +weapon.verb() + " " + target + " for " + damage + " damage.";
-		}
-		else if (chance<90) {
-			result = actor + " yells " + listOfInsults[2] + " and " +weapon.verb() + " " + target + " for " + damage + " damage.";
+		if (rand.nextDouble()<0.1) {
+			chance = rand.nextDouble()*100;
+			if (chance<3) {
+				result = actor + " yells " + listOfInsults[0] + " and " +weapon.verb() + " " + target + " for " + damage + " damage.";
+			}
+			else if (chance<6) {
+				result = actor + " yells " + listOfInsults[1] + " and " +weapon.verb() + " " + target + " for " + damage + " damage.";
+			}
+			else if (chance<9) {
+				result = actor + " yells " + listOfInsults[2] + " and " +weapon.verb() + " " + target + " for " + damage + " damage.";
+			}
 		}
 		else {
 			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
