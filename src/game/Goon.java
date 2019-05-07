@@ -14,7 +14,7 @@ public class Goon extends Actor {
 		Item key = new Key("key", 'k');
 		this.addItemToInventory(key);
 		addBehaviour(new FollowBehaviour(player));
-		//addBehaviour(new InsultAction(player));
+		addBehaviour(new InsultBehaviour(player));
 	}
 
 	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
@@ -25,9 +25,6 @@ public class Goon extends Actor {
 	//A goon hit will have double the hitpoints of a Grunt slap
 	@Override
 	protected IntrinsicWeapon getIntrinsicWeapon() {
-		if (ranInt<=0.9) {
-			return new IntrinsicWeapon(10, "Insults and hits");
-		}
 		return new IntrinsicWeapon(10, "hits");
 	}
 
