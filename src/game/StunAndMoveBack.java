@@ -50,7 +50,11 @@ public class StunAndMoveBack extends Action implements ActionFactory {
 		}		
 		
 		// Stun the player
-
+		if(this.target instanceof StunnablePlayer) {
+			if(((StunnablePlayer) this.target).getStunCounter() == 0) {
+				((StunnablePlayer) this.target).increaseStunCounter();
+			}
+		}
 		
 		// Move one square away from player
 		for (Exit exit : here.getExits()) {

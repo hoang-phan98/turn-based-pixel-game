@@ -9,7 +9,6 @@ import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.MoveActorAction;
-import edu.monash.fit2099.engine.Player;
 import edu.monash.fit2099.engine.World;
 
 public class Application {
@@ -59,7 +58,7 @@ public class Application {
         rocket2.getAllowableActions().add(new MoveActorAction(gameMap.at(22, 5), "to Map 1!"));
         gameMap2.addItem(rocket2, 0, 5);
 		
-		Actor player = new Player("Player", '@', 1, 100);
+		Actor player = new StunnablePlayer("Player", '@', 1, 100);
 		world.addPlayer(player, gameMap, 5, 10);
 		//player.addItemToInventory(Item.newInventoryItem("Rocket Body", 'l'));
 		//player.addItemToInventory(Item.newInventoryItem("Rocket Engine", 'e'));
