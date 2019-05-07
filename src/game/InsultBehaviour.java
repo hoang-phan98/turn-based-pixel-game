@@ -1,30 +1,28 @@
 package game;
 
 import java.util.Random;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.DropItemAction;
+import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.Weapon;
 
-public class InsultAction extends Action {
-	private Actor actor;
+public class InsultBehaviour extends Action implements ActionFactory {
+//	private Actor actor;
 	private Actor target;
 	private Random rand= new Random();
 	private Double chance = 100*rand.nextDouble();
-	private String insult;
 	private String result;
 	private String[] listOfInsults = {"You will never succeed","You've gained weight","Your hairline is receeding"};
 	
 //	private List<String> listOfInsults = new ArrayList<String>();
 
-	public InsultAction(Actor actor, Actor target) {
-		this.actor = actor;
+	public InsultBehaviour(Actor target) {
+//		this.actor = actor;
 		this.target = target;
 	}
 
@@ -51,8 +49,6 @@ public class InsultAction extends Action {
 			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 		}
 
-		
-//		String result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
 
 		target.hurt(damage);
 		if (!target.isConscious()) {
@@ -73,6 +69,18 @@ public class InsultAction extends Action {
 
 		return result;
 
+	}
+	
+	@Override
+	public Action getAction(Actor actor, GameMap map) {
+		Location here = map.locationOf(actor);
+		Location there = map.locationOf(target);
+		for (Exit exit : here.getExits()) {
+			if (exit.getDestination() == there) {
+				return this;
+			}
+		}
+		return null;
 	}
 
 	@Override

@@ -13,8 +13,8 @@ public class Goon extends Actor {
 		super(name, 'o', 5, 100);
 		Item key = new Key("key", 'k');
 		this.addItemToInventory(key);
-		addBehaviour(new FollowBehaviour(player));
-		//addBehaviour(new InsultAction(player));
+		//addBehaviour(new FollowBehaviour(player));
+		addBehaviour(new InsultBehaviour(player));
 	}
 
 	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
@@ -25,9 +25,17 @@ public class Goon extends Actor {
 	//A goon hit will have double the hitpoints of a Grunt slap
 	@Override
 	protected IntrinsicWeapon getIntrinsicWeapon() {
-		if (ranInt<=0.9) {
-			return new IntrinsicWeapon(10, "Insults and hits");
-		}
+//		if (ranInt<=0.9) {
+//			if (ranInt<=0.3) {
+//				return new IntrinsicWeapon(11, "yells 'You'll never succeed' and hits");
+//			}
+//			if (ranInt<=0.6) {
+//				return new IntrinsicWeapon(11, "yells 'You've gained weight' and hits");
+//			}
+//			if (ranInt<=0.9) {
+//				return new IntrinsicWeapon(11, "yells 'You're hairline is receding' and hits");
+//			}
+//		}
 		return new IntrinsicWeapon(10, "hits");
 	}
 
