@@ -17,7 +17,7 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new Door());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new Door(), new RocketPad());
 		GameMap gameMap;
 
 		List<String> map = Arrays.asList(
@@ -41,7 +41,7 @@ public class Application {
 				".......................",
 				".......................",
 				".......................",
-				".......................",
+				".....X.................",
 				".......................",
 				".......................",
 				".......................",
@@ -61,6 +61,10 @@ public class Application {
 		
 		Actor player = new Player("Player", '@', 1, 100);
 		world.addPlayer(player, gameMap, 5, 10);
+		player.addItemToInventory(Item.newInventoryItem("Rocket Body", 'l'));
+		player.addItemToInventory(Item.newInventoryItem("Rocket Engine", 'e'));
+
+		
 		
 		Grunt grunt = new Grunt("Mongo", player);
 		gameMap.addActor(grunt, 0, 0);
