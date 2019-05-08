@@ -9,7 +9,7 @@ public class Ninja extends Actor {
 	
 	// Ninjas have 25 hitpoints and are always represented with an n
 	public Ninja(String name, Actor player) {
-		super(name, 'n', 5, 25);
+		super(name, 'n', 5, 5);
 		Item key = new Key("key", 'k');
 		this.addItemToInventory(key);
 		addBehaviour(new StunAndMoveBackBehaviour(player));

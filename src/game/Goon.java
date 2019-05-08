@@ -12,7 +12,7 @@ public class Goon extends Actor {
 	double ranInt = Math.random();
 	// Goons have 100 hitpoints (twice that of a Grunt) and are always represented with a o
 	public Goon(String name, Actor player) {
-		super(name, 'o', 5, 100);
+		super(name, 'o', 5, 10);
 		Item key = new Key("key", 'k');
 		this.addItemToInventory(key);
 		addBehaviour(new FollowBehaviour(player));

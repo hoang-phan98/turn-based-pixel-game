@@ -24,7 +24,7 @@ public class Application {
 				"....#####....######....",
 				"....#...#....#....#....",
 				"....#...]....#....#....",
-				"....#####....##.###....",
+				"....#####....##]###....",
 				".......................",
 				".......................",
 				".......................",
@@ -78,7 +78,7 @@ public class Application {
 		Q q = new Q("Q", 'Q', 5, 100);
 		gameMap2.addActor(q, 8, 8);
 		
-		Item rocketPlan = Item.newInventoryItem("Rocket Plan", 'p');
+		Item rocketPlan = new Item("Rocket Plan", 'p');
 		//player.addItemToInventory(rocketPlan);
 		gameMap.addItem(rocketPlan, 6, 2);
 		world.run();

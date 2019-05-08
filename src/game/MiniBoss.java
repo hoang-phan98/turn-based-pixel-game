@@ -12,7 +12,7 @@ public class MiniBoss extends Actor {
 	private Random rand = new Random();
 	
 	public MiniBoss(String name) {
-		super(name, 'd', 5, 10);
+		super(name, 'd', 5, 5);
 		Item rocketEngine = Item.newInventoryItem("Rocket Engine", 'e');
 		this.addItemToInventory(rocketEngine);
 	}

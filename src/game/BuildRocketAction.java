@@ -25,6 +25,7 @@ public class BuildRocketAction extends Action {
 					if(item1.toString() == "Rocket Engine") {
 						map.addItem(rocket, this.location.x(), this.location.y());
 						map.add(new Floor(), this.location);
+						map.removeActor(actor);
 						return "The Rocket has been created!";
 					}
 				}

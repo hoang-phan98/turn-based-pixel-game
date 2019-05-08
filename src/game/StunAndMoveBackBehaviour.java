@@ -19,6 +19,9 @@ public class StunAndMoveBackBehaviour extends Action implements ActionFactory {
 	
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
+		if(map.locationOf(this.target) == null) {
+			return new SkipTurnAction();
+		}
 		return this;
 	}
 	
