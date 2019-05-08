@@ -19,9 +19,9 @@ public class BuildRocketAction extends Action {
 	public String execute(Actor actor, GameMap map) {
 		Item rocket = new Item("Rocket", 'R');
 		
-		for(Item item : this.actor.getInventory()) {
+		for(Item item: this.location.getItems()) {
 			if(item.toString() == "Rocket Body") {
-				for(Item item1: this.actor.getInventory()) {
+				for(Item item1: this.location.getItems()) {
 					if(item1.toString() == "Rocket Engine") {
 						map.addItem(rocket, this.location.x(), this.location.y());
 						map.add(new Floor(), this.location);
