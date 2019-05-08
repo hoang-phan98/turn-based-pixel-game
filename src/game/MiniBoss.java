@@ -7,11 +7,11 @@ import java.util.List;
 
 import edu.monash.fit2099.engine.*;
 
-public class miniBoss extends Actor {
+public class MiniBoss extends Actor {
 	
 	private Random rand = new Random();
 	
-	public miniBoss(String name) {
+	public MiniBoss(String name) {
 		super(name, 'd', 5, 10);
 		Item rocketEngine = Item.newInventoryItem("Rocket Engine", 'e');
 		this.addItemToInventory(rocketEngine);
@@ -42,5 +42,6 @@ public class miniBoss extends Actor {
 		}
 		
 		return action;
+	}
 }
 

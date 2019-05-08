@@ -72,7 +72,7 @@ public class Application {
 		gameMap.addActor(ninja, 5, 5);
 		Goon goon = new Goon("Heckler", player);
 		gameMap.addActor(goon, 7, 7);
-		miniBoss DoctorMaybe = new miniBoss("Doctor Maybe");
+		MiniBoss DoctorMaybe = new MiniBoss("Doctor Maybe");
 		gameMap.addActor(DoctorMaybe, 16, 2);
 		
 		Q q = new Q("Q", 'Q', 5, 100);
