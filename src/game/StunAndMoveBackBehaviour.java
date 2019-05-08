@@ -5,11 +5,11 @@ import java.util.Random;
 import edu.monash.fit2099.engine.*;
 
 
-public class StunAndMoveBack extends Action implements ActionFactory {
+public class StunAndMoveBackBehaviour extends Action implements ActionFactory {
 	private Actor target;
 	private Random rand = new Random();
 	
-	public StunAndMoveBack(Actor actor) {
+	public StunAndMoveBackBehaviour(Actor actor) {
 		this.target = actor;
 	}
 	
@@ -24,6 +24,8 @@ public class StunAndMoveBack extends Action implements ActionFactory {
 	
 	@Override
 	public String execute(Actor actor, GameMap map) {
+		String description = "";
+		
 		Location here = map.locationOf(actor);
 		Location there = map.locationOf(target);
 
@@ -36,23 +38,16 @@ public class StunAndMoveBack extends Action implements ActionFactory {
 		
 		// 50% chance of not stunning the player
 		if (rand.nextBoolean()) {
-			// Move one square away from player
-			for (Exit exit : here.getExits()) {
-				Location destination = exit.getDestination();
-				if (destination.canActorEnter(actor)) {
-					int newDistance = distance(destination, there);
-					if (newDistance > currentDistance) {
-						map.moveActor(actor, destination);
-						return actor + " misses " + target + ".";
-					}
+			description = actor + " has missed the player";
+		} else {
+			// Stun the player
+			if(this.target instanceof StunnablePlayer) {
+				if(((StunnablePlayer) this.target).getStunCounter() == 0) {
+					((StunnablePlayer) this.target).increaseStunCounter();
+					description = actor + " has stunned the player";
+				} else {
+					description = "The player is already stunned! The powder has no effect";
 				}
-			}
-		}		
-		
-		// Stun the player
-		if(this.target instanceof StunnablePlayer) {
-			if(((StunnablePlayer) this.target).getStunCounter() == 0) {
-				((StunnablePlayer) this.target).increaseStunCounter();
 			}
 		}
 		
@@ -63,22 +58,23 @@ public class StunAndMoveBack extends Action implements ActionFactory {
 				int newDistance = distance(destination, there);
 				if (newDistance > currentDistance) {
 					map.moveActor(actor, destination);
-					return menuDescription(actor);
+					return description;
 				}
 			}
 		}
 		
-		return menuDescription(actor);
+		return description;
 	}
-
+	
+	
 	@Override
 	public String menuDescription(Actor actor) {
-		return actor + " has stunned " + target + "!";
+		return "";
 	}
 
 	@Override
 	public String hotKey() {
-		return null;
+		return "";
 	}
 
 

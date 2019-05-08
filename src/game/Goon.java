@@ -2,10 +2,12 @@ package game;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import edu.monash.fit2099.engine.*;
 
 public class Goon extends Actor {
+	private Random rand = new Random();
 	
 	double ranInt = Math.random();
 	// Goons have 100 hitpoints (twice that of a Grunt) and are always represented with a o
@@ -36,6 +38,11 @@ public class Goon extends Actor {
 				return action;
 		}
 		
-		return super.playTurn(actions,  map,  display);
+		Action action = new DropItemAction(null);
+		while(action instanceof DropItemAction || action instanceof PickUpItemAction) {
+			action = actions.get(rand.nextInt(actions.size()));
+		}
+		
+		return action;
 	}
 }

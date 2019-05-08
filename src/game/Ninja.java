@@ -12,22 +12,18 @@ public class Ninja extends Actor {
 		super(name, 'n', 5, 25);
 		Item key = new Key("key", 'k');
 		this.addItemToInventory(key);
-		addBehaviour(new StunAndMoveBack(player));
+		addBehaviour(new StunAndMoveBackBehaviour(player));
 	}
 	
-	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
+	private ActionFactory ninjaBehaviour = new StunAndMoveBackBehaviour(null);
 
 	private void addBehaviour(ActionFactory behaviour) {
-		actionFactories.add(behaviour);
+		this.ninjaBehaviour = behaviour;
 	}
 	
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
-		for (ActionFactory factory : actionFactories) {
-			Action action = factory.getAction(this, map);
-			return action;
-		}
-		return null;
+		return this.ninjaBehaviour.getAction(this, map);
 	}
 	
 
