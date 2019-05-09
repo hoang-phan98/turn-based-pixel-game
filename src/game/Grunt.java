@@ -9,7 +9,9 @@ import java.util.Random;
 public class Grunt extends Actor {
 	private Random rand = new Random();
 
-	// Grunts have 50 hitpoints and are always represented with a g
+	/**
+	 * Grunts have 10hp and is represented with a 'g'
+	 */
 	public Grunt(String name, Actor player) {
 		super(name, 'g', 5, 10);
 		Item key = new Key("key", 'k');
@@ -25,11 +27,19 @@ public class Grunt extends Actor {
 	
 	
 	@Override
+	/**
+	 * A Grunt's attack will deal 5 damage
+	 */
 	protected IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(5, "slaps");
 	}
 
 	@Override
+	/**
+	 * Grunts will always try to follow the player first. If the are next to them,
+	 * then they will perform a random allowed action other than DropItem and 
+	 * PickUpItem.
+	 */
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		for (ActionFactory factory : actionFactories) {
 			Action action = factory.getAction(this, map);

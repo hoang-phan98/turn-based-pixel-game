@@ -1,43 +1,42 @@
 package game;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Item;
 
+/**
+ * Represents a friendly character towards all other actors
+ */
 public class Q extends Actor{
-
-	public Q(String name, char displayChar, int priority, int hitPoints) {
-		super(name, displayChar, priority, hitPoints);
-		addBehaviour(new WanderBehaviour());
+	
+	/**
+	 *  Q will be represented with a 'Q' and have 100hp
+	 */
+	public Q() {
+		super("Q", 'Q', 5, 100);
 	}
 	
-	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
+	private ActionFactory actionFactory = new WanderBehaviour();
 	
-	private void addBehaviour(ActionFactory behaviour) {
-		actionFactories.add(behaviour);
-	}	
-	
-	@Override
+    @Override
+    /**
+     * Q supports actions allowing the otherActor to either talk to him
+     * or give him the Rocket Plan in exchange for the Rocket Body
+     */
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions actions = new Actions();
 		actions.add(new GivePlanAction(otherActor, this));
-		actions.add(new TalkToQAction(otherActor, this));
+		actions.add(new TalkToQAction());
 		return actions;
 	}
 	
 	@Override
+	/**
+	 * Q will always randomly wander around the map
+	 */
 	public Action playTurn(Actions actions, GameMap map, Display display) {
-		for (ActionFactory factory : actionFactories) {
-			Action action = factory.getAction(this, map);
-			if(action != null)
-				return action;
-		}
-		return super.playTurn(actions,  map,  display);
+		return this.actionFactory.getAction(this, map);
 	}
 }

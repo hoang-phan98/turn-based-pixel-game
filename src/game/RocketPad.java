@@ -5,6 +5,9 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 
+/**
+ * Represents a special terrain that supports the BuildRocketAction
+ */
 public class RocketPad extends Ground {
 
 	public RocketPad() {

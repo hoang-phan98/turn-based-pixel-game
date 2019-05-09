@@ -75,7 +75,7 @@ public class Application {
 		MiniBoss DoctorMaybe = new MiniBoss("Doctor Maybe");
 		gameMap.addActor(DoctorMaybe, 16, 2);
 		
-		Q q = new Q("Q", 'Q', 5, 100);
+		Q q = new Q();
 		gameMap2.addActor(q, 8, 8);
 		
 		Item rocketPlan = new Item("Rocket Plan", 'p');

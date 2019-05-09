@@ -6,6 +6,9 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 
+/**
+ * Represents the action used to unlock a locked door
+ */
 public class UnlockDoorAction extends Action{
 	private String direction;
 	private Location doorLocation;
@@ -16,6 +19,11 @@ public class UnlockDoorAction extends Action{
 	}
 
 	@Override
+	/**
+	 * First checks if the player has a key in their inventory
+	 * If they do, removes the key from the inventory and replace
+	 * the door with a traversable floor terrain permanently
+	 */
 	public String execute(Actor actor, GameMap map) {
 		for(Item item: actor.getInventory()) {
 			if(item instanceof Key) {

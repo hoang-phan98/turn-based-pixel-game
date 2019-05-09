@@ -5,16 +5,16 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 
+/**
+ * Represents the Action allowing the Player to talk to Q. 
+ */
 public class TalkToQAction extends Action {
-	private Actor actor;
-	private Actor subject;
-	
-	public TalkToQAction(Actor actor, Actor subject) {
-		this.actor = actor;
-		this.actor = subject;
-	}
-	
+
 	@Override
+	/**
+	 * Q's response will vary depending on whether the player 
+	 * has the rocket plan in their inventory
+	 */
 	public String execute(Actor actor, GameMap map) {
 		for(Item item: actor.getInventory()) {
 			if(item.toString() == "Rocket Plan") {

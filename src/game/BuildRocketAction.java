@@ -6,16 +6,27 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.Item;
 
+/**
+ * Represents the Action that can be used by the user in order 
+ * to build the Rocket once they are next to the Rocket Pad
+ */
 public class BuildRocketAction extends Action {
-	private Actor actor;
 	private Location location;
 	
 	public BuildRocketAction(Actor actor, Location location) {
-		this.actor = actor;
 		this.location = location;
 	}
 	
+	
 	@Override
+	/**
+	 * Checks if the location contains the Rocket Engine as well as Rocket Body
+	 * If it does, adds the Rocket to the location and removes the player,
+	 * thus ending the game
+	 * 
+	 * @param actor The actor performing the action, which will be the Player
+	 * @return a description of what happened that can be displayed to the user.
+	 */
 	public String execute(Actor actor, GameMap map) {
 		Item rocket = new Item("Rocket", 'R');
 		

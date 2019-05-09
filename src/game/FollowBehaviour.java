@@ -2,7 +2,10 @@ package game;
 
 import edu.monash.fit2099.engine.*;
 
-
+/**
+ * Moves the Actor towards the another Actor each turn
+ * 
+ */
 public class FollowBehaviour implements ActionFactory {
 
 	private Actor target;
@@ -12,6 +15,10 @@ public class FollowBehaviour implements ActionFactory {
 	}
 
 	@Override
+	/**
+	 * Returns an action which moves the Actor towards the target,
+	 * unless they are already next to them.
+	 */
 	public Action getAction(Actor actor, GameMap map) {
 		if(map.locationOf(this.target) == null) {
 			return new SkipTurnAction();

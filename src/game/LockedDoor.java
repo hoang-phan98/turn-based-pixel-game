@@ -6,6 +6,9 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
 import edu.monash.fit2099.engine.Location;
 
+/**
+ * Represents a non-traversable terrain to Actors that can be unlocked
+ */
 public class LockedDoor extends Ground {
 	public LockedDoor() {
 		super(']');

@@ -4,7 +4,10 @@ import java.util.Random;
 
 import edu.monash.fit2099.engine.*;
 
-
+/**
+ *	Represents the behaviour of a ninja once it comes in range of a player 
+ *
+ */
 public class StunAndMoveBackBehaviour extends Action implements ActionFactory {
 	private Actor target;
 	private Random rand = new Random();
@@ -18,6 +21,9 @@ public class StunAndMoveBackBehaviour extends Action implements ActionFactory {
 	}
 	
 	@Override
+	/**
+	 * If the target is no longer on the map, actor will skip the turn
+	 */
 	public Action getAction(Actor actor, GameMap map) {
 		if(map.locationOf(this.target) == null) {
 			return new SkipTurnAction();
@@ -26,6 +32,11 @@ public class StunAndMoveBackBehaviour extends Action implements ActionFactory {
 	}
 	
 	@Override
+	/**
+	 * Do nothing if the player is not within 5 squares
+	 * Has a 50% chance of missing. If it hits the target is stunned for 2 rounds
+	 * Then moves one step away from the target
+	 */
 	public String execute(Actor actor, GameMap map) {
 		String description = "";
 		

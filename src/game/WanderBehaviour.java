@@ -11,11 +11,19 @@ import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.SkipTurnAction;
 
+/**
+ * Represents a behaviour that lets the actor move randomly around the map
+ */
 public class WanderBehaviour implements ActionFactory {
 	private Random rand = new Random();
 	private ArrayList<Exit> exits = new ArrayList<Exit>();
 	
 	@Override
+	/**
+	 * Randomly picks an exit from a list of all exits from the current location
+	 * of the actor as, and choose this as the destination. If the actor is unable
+	 * to enter any of the exits, they will skip their turn 
+	 */
 	public Action getAction(Actor actor, GameMap map) {
 		Location here = map.locationOf(actor);
 		for (Exit exit : here.getExits()) {

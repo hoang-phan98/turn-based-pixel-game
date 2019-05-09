@@ -6,11 +6,18 @@ import java.util.Random;
 
 import edu.monash.fit2099.engine.*;
 
+/**
+ * Represents a class of hostile actors towards the player
+ */
 public class Goon extends Actor {
 	private Random rand = new Random();
 	
 	double ranInt = Math.random();
-	// Goons have 100 hitpoints (twice that of a Grunt) and are always represented with a o
+	
+	/**
+	 * Goons will have 10hp and is represented with an 'o'
+	 */
+	
 	public Goon(String name, Actor player) {
 		super(name, 'o', 5, 10);
 		Item key = new Key("key", 'k');
@@ -24,13 +31,21 @@ public class Goon extends Actor {
 	private void addBehaviour(ActionFactory behaviour) {
 		actionFactories.add(behaviour);
 	}
-	//A goon hit will have double the hitpoints of a Grunt slap
+
+	/**
+	 * A Goon's attack will do twice the damage of a Grunt
+	 */
 	@Override
 	protected IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(10, "hits");
 	}
 
 	@Override
+	/**
+	 * Goons will always try to follow the player first. If the are next to them,
+	 * then they will perform a random allowed action other than DropItem and 
+	 * PickUpItem.
+	 */
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		for (ActionFactory factory : actionFactories) {
 			Action action = factory.getAction(this, map);
