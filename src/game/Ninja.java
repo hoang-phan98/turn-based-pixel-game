@@ -15,7 +15,7 @@ public class Ninja extends Actor {
 	 */
 	public Ninja(String name, Actor player) {
 		super(name, 'n', 5, 5);
-		Item key = new Key("key", 'k');
+		Item key = new Key();
 		this.addItemToInventory(key);
 		addBehaviour(new StunAndMoveBackBehaviour(player));
 	}

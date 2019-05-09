@@ -17,7 +17,7 @@ public class Grunt extends Actor {
 	 */
 	public Grunt(String name, Actor player) {
 		super(name, 'g', 5, 10);
-		Item key = new Key("key", 'k');
+		Item key = new Key();
 		this.addItemToInventory(key);
 		addBehaviour(new FollowBehaviour(player));
 	}

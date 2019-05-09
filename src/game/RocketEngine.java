@@ -11,8 +11,8 @@ import edu.monash.fit2099.engine.DropItemAction;
  * Can be picked up my any player
  */
 public class RocketEngine extends Item {
-	public RocketEngine(String name, char displayChar) {
-		super(name, displayChar);
+	public RocketEngine() {
+		super("Rocket Engine", 'e');
 		allowableActions = new Actions(new DropItemAction(this));
 	}
 }

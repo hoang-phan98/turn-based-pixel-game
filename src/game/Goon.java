@@ -20,7 +20,7 @@ public class Goon extends Actor {
 	
 	public Goon(String name, Actor player) {
 		super(name, 'o', 5, 10);
-		Item key = new Key("key", 'k');
+		Item key = new Key();
 		this.addItemToInventory(key);
 		addBehaviour(new FollowBehaviour(player));
 		addBehaviour(new InsultBehaviour(player));

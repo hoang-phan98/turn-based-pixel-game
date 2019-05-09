@@ -10,11 +10,9 @@ import edu.monash.fit2099.engine.Item;
  * for the Rocket Body
  */
 public class GivePlanAction extends Action {
-	private Actor actor;
 	private Actor target;
 	
-	public GivePlanAction(Actor actor, Actor target) {
-		this.actor = actor;
+	public GivePlanAction(Actor target) {
 		this.target = target;
 	}
 	
@@ -26,7 +24,7 @@ public class GivePlanAction extends Action {
 	 */
 	public String execute(Actor actor, GameMap map) {
 		for(Item item: actor.getInventory()) {
-			if(item.toString() == "Rocket Plan") {
+			if(item instanceof RocketPlan) {
 				actor.removeItemFromInventory(item);
 				actor.addItemToInventory(Item.newInventoryItem("Rocket Body", 'B'));
 				map.removeActor(this.target);

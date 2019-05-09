@@ -27,7 +27,7 @@ public class Q extends Actor{
      */
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions actions = new Actions();
-		actions.add(new GivePlanAction(otherActor, this));
+		actions.add(new GivePlanAction(this));
 		actions.add(new TalkToQAction());
 		return actions;
 	}

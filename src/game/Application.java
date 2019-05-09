@@ -60,9 +60,6 @@ public class Application {
 		
 		Actor player = new StunnablePlayer("Player", '@', 1, 100);
 		world.addPlayer(player, gameMap, 5, 10);
-		//player.addItemToInventory(Item.newInventoryItem("Rocket Body", 'l'));
-		//player.addItemToInventory(Item.newInventoryItem("Rocket Engine", 'e'));
-
 		
 		Grunt grunt = new Grunt("Mongo", player);
 		gameMap.addActor(grunt, 0, 0);
@@ -78,8 +75,7 @@ public class Application {
 		Q q = new Q();
 		gameMap2.addActor(q, 8, 8);
 		
-		Item rocketPlan = new Item("Rocket Plan", 'p');
-		//player.addItemToInventory(rocketPlan);
+		Item rocketPlan = new RocketPlan();
 		gameMap.addItem(rocketPlan, 6, 2);
 		world.run();
 	}

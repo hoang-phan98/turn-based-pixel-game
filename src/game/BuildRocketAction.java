@@ -31,9 +31,9 @@ public class BuildRocketAction extends Action {
 		Item rocket = new Item("Rocket", 'R');
 		
 		for(Item item: this.location.getItems()) {
-			if(item.toString() == "Rocket Body") {
+			if(item instanceof RocketBody) {
 				for(Item item1: this.location.getItems()) {
-					if(item1.toString() == "Rocket Engine") {
+					if(item1 instanceof RocketEngine) {
 						map.addItem(rocket, this.location.x(), this.location.y());
 						map.add(new Floor(), this.location);
 						map.removeActor(actor);
