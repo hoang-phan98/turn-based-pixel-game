@@ -42,17 +42,19 @@ public class MiniBoss extends Actor {
 	 */
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
+
+		Action skipaction = new SkipTurnAction();
 		for (ActionFactory factory : actionFactories) {
 			Action action = factory.getAction(this, map);
 			if(action != null)
 				return action;
 		}
+		return skipaction;
+//		Action action = new DropItemAction(null);
+//		while(action instanceof DropItemAction || action instanceof PickUpItemAction) {
+//			action = actions.get(rand.nextInt(actions.size()));
+//		}
 		
-		Action action = new DropItemAction(null);
-		while(action instanceof DropItemAction || action instanceof PickUpItemAction) {
-			action = actions.get(rand.nextInt(actions.size()));
-		}
-		
-		return action;
+//		return action;
 	}
 }
