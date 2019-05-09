@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Represents a class of hostile actors towards the player
+ */
 public class Grunt extends Actor {
 	private Random rand = new Random();
 

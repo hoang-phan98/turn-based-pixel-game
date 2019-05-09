@@ -11,6 +11,7 @@ import edu.monash.fit2099.engine.*;
 public class StunAndMoveBackBehaviour extends Action implements ActionFactory {
 	private Actor target;
 	private Random rand = new Random();
+	private boolean blocked = false;
 	
 	public StunAndMoveBackBehaviour(Actor actor) {
 		this.target = actor;
@@ -19,7 +20,7 @@ public class StunAndMoveBackBehaviour extends Action implements ActionFactory {
 	private int distance(Location a, Location b) {
 		return Math.max(Math.abs(a.x() - b.x()), Math.abs(a.y() - b.y()));
 	}
-	
+		
 	@Override
 	/**
 	 * If the target is no longer on the map, actor will skip the turn
@@ -33,34 +34,50 @@ public class StunAndMoveBackBehaviour extends Action implements ActionFactory {
 	
 	@Override
 	/**
-	 * Do nothing if the player is not within 5 squares
-	 * Has a 50% chance of missing. If it hits the target is stunned for 2 rounds
-	 * Then moves one step away from the target
-	 */
+	 * Do nothing if the target is not within 5 squares in either direction,
+	 * or if they are not in a straight line with the ninja.
+	 * Has a 50% chance of missing and is blocked by walls and doors.
+	 * If it hits the target's turn is skipped for 2 rounds.
+	 * Has no effect if the target is already stunned.
+	 * The ninja then moves one step away from the target
+	 */	
 	public String execute(Actor actor, GameMap map) {
 		String description = "";
 		
 		Location here = map.locationOf(actor);
 		Location there = map.locationOf(target);
+		Range xs, ys;
 
 		int currentDistance = distance(here, there);
 		
-		// Do nothing if player not within 5 squares
-		if (currentDistance > 4) {
+		// Do nothing if target not within 5 squares in either direction 
+		// or if the ninja is not a straight line with the target
+		if ((currentDistance > 4) || !(here.x() == there.x() || here.y() == there.y())) {
 			return actor + " does nothing";
-		}
-		
-		// 50% chance of not stunning the player
-		if (rand.nextBoolean()) {
-			description = actor + " has missed the player";
 		} else {
-			// Stun the player
-			if(this.target instanceof StunnablePlayer) {
-				if(((StunnablePlayer) this.target).getStunCounter() == 0) {
-					((StunnablePlayer) this.target).increaseStunCounter();
-					description = actor + " has stunned the player";
-				} else {
-					description = "The player is already stunned! The powder has no effect";
+			// Checks whether the stun powder can be blocked by any terrain in the way
+			xs = new Range(Math.min(here.x(), there.x()), Math.abs(here.x() - there.x()) + 1);
+			ys = new Range(Math.min(here.y(), there.y()), Math.abs(here.y() - there.y()) + 1);
+			for (int x : xs) {
+				for (int y : ys) {
+					if(map.at(x, y).getGround().blocksThrownObjects()) {
+						description = "The bag of powder has been blocked!";
+						this.blocked = true;
+					}
+				}
+			}
+			// 50% chance of not stunning the player
+			if (rand.nextBoolean() && !this.blocked) {
+				description = actor + " has missed the player";
+			} else {
+				// Stun the player
+				if(this.target instanceof StunnablePlayer && !this.blocked) {
+					if(((StunnablePlayer) this.target).getStunCounter() == 0) {
+						((StunnablePlayer) this.target).increaseStunCounter();
+						description = actor + " has stunned the player";
+					} else {
+						description = "The player is already stunned! The powder has no effect";
+					}
 				}
 			}
 		}
