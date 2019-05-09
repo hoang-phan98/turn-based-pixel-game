@@ -13,48 +13,45 @@ import edu.monash.fit2099.engine.*;
 public class MiniBoss extends Actor {
 	
 	private Random rand = new Random();
+	private boolean canAttack = false;
 	
 
 	/**
-	 * MiniBoss will have 1hp and is represented with an 'o'
+	 * MiniBoss will have 5hp (half of a Grunt) and is represented with an 'o'
 	 */
 	public MiniBoss(String name) {
-		super(name, 'd', 5, 1);
-		Item rocketEngine = Item.newInventoryItem("Rocket Engine", 'e');
+		super(name, 'd', 5, 5);
+		Item rocketEngine = new RocketEngine();
 		this.addItemToInventory(rocketEngine);
 	}
-	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
-
-	private void addBehaviour(ActionFactory behaviour) {
-		actionFactories.add(behaviour);
-	}
+	
 	/**
-	 * A MiniBoss's attack will do a fraction the damage of a Grunt
+	 * A MiniBoss's attack will half the damage of a Grunt
 	 */
 	@Override
 	protected IntrinsicWeapon getIntrinsicWeapon() {
-		return new IntrinsicWeapon(1, "feebly slaps");
+		return new IntrinsicWeapon(2, "feebly slaps");
 	}
 	/**
-	 * MiniBoss will stay still until encountered by a Player. If they are next to them,
-	 * then they will perform a random allowed action other than DropItem and 
-	 * PickUpItem.
+	 * MiniBoss will stay still unless encountered by another Actor
+	 * at which point it will have a 50% chance of attacking and 50%
+	 * chance of skipping its turn.
 	 */
 	@Override
 	public Action playTurn(Actions actions, GameMap map, Display display) {
-
-		Action skipaction = new SkipTurnAction();
-		for (ActionFactory factory : actionFactories) {
-			Action action = factory.getAction(this, map);
-			if(action != null)
-				return action;
-		}
-		return skipaction;
-//		Action action = new DropItemAction(null);
-//		while(action instanceof DropItemAction || action instanceof PickUpItemAction) {
-//			action = actions.get(rand.nextInt(actions.size()));
-//		}
+		Action attack = null;
 		
-//		return action;
+		for(Action action : actions) {
+			if(action instanceof AttackAction) {
+				this.canAttack = true;
+				attack = action;
+			}
+		}
+		
+		if(rand.nextBoolean() && this.canAttack) {
+			return attack;
+		}
+		
+		return new SkipTurnAction();
 	}
 }

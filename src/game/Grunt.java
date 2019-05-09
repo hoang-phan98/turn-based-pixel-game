@@ -34,7 +34,7 @@ public class Grunt extends Actor {
 	 * A Grunt's attack will deal 5 damage
 	 */
 	protected IntrinsicWeapon getIntrinsicWeapon() {
-		return new IntrinsicWeapon(5, "slaps");
+		return new IntrinsicWeapon(4, "slaps");
 	}
 
 	@Override

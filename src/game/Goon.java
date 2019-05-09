@@ -37,7 +37,7 @@ public class Goon extends Actor {
 	 */
 	@Override
 	protected IntrinsicWeapon getIntrinsicWeapon() {
-		return new IntrinsicWeapon(10, "hits");
+		return new IntrinsicWeapon(8, "hits");
 	}
 
 	@Override
