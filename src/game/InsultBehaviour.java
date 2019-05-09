@@ -25,7 +25,14 @@ public class InsultBehaviour extends Action implements ActionFactory {
 //		this.actor = actor;
 		this.target = target;
 	}
-
+	/**
+	 * Overrides Action.execute()
+	 *
+	 * @see Action#execute(Actor, GameMap)
+	 * @param actor The actor performing the action.
+	 * @param map The map the actor is on.
+	 * @return a string description of the action which occurs
+	 */
 	@Override
 	public String execute(Actor actor, GameMap map) {
 
@@ -73,7 +80,13 @@ public class InsultBehaviour extends Action implements ActionFactory {
 		return result;
 
 	}
-	
+	/**
+	 * Overrides ActionFactory.getAction(Actor,GameMap)
+	 * 
+	 * @param actor The actor performing the action.
+	 * @param map The map the actor is on.
+	 * @return this Action if the target is next to the actor, null otherwise
+	 */
 	@Override
 	public Action getAction(Actor actor, GameMap map) {
 		Location here = map.locationOf(actor);
@@ -85,12 +98,20 @@ public class InsultBehaviour extends Action implements ActionFactory {
 		}
 		return null;
 	}
-
+	/**
+	 * Overrides Action.menuDescription()
+	 *
+	 * @see Action#menuDescription(Actor)
+	 */
 	@Override
 	public String menuDescription(Actor actor) {
 		return actor + " attacks " + target;
 	}
-
+	/**
+	 * Overrides Action.hotKey()
+	 *
+	 * @see Action#hotKey()
+	 */
 	@Override
 	public String hotKey() {
 		return "";
