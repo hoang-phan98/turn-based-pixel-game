@@ -73,7 +73,7 @@ public class StunAndMoveBackBehaviour extends Action implements ActionFactory {
 				// Stun the player
 				if(this.target instanceof StunnablePlayer && !this.blocked) {
 					if(((StunnablePlayer) this.target).getStunCounter() == 0) {
-						((StunnablePlayer) this.target).increaseStunCounter();
+						((StunnablePlayer) this.target).increaseStunCounter(2);
 						description = actor + " has stunned the player";
 					} else {
 						description = "The player is already stunned! The powder has no effect";
