@@ -36,8 +36,8 @@ public class StunnablePlayer extends Player {
 	 * Call this method when the Ninja successfully stuns the player
 	 * The effect will last for two turns
 	 */
-	public void increaseStunCounter() {
-		this.stunCounter += 2;
+	public void increaseStunCounter(int num) {
+		this.stunCounter += num;
 	}
 	
 	/**

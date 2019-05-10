@@ -129,11 +129,11 @@ style=wordwrap</panel_attributes>
     <coordinates>
       <x>176</x>
       <y>304</y>
-      <w>144</w>
+      <w>160</w>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;160.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;180.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -666,8 +666,8 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>560</x>
-      <y>560</y>
+      <x>472</x>
+      <y>544</y>
       <w>104</w>
       <h>24</h>
     </coordinates>
@@ -812,12 +812,12 @@ style=wordwrap</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>560</x>
+      <x>472</x>
       <y>616</y>
       <w>104</w>
       <h>24</h>
     </coordinates>
-    <panel_attributes>4.1 playTurn()
+    <panel_attributes>5.1 playTurn()
 style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
@@ -1068,5 +1068,28 @@ style=wordwrap</panel_attributes>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>560</y>
+      <w>56</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>30.0;50.0;50.0;50.0;50.0;10.0;10.0;10.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>568</x>
+      <y>608</y>
+      <w>168</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>4.1 increaseStunCounter()
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
