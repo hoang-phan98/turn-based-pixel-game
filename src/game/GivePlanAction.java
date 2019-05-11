@@ -11,6 +11,7 @@ import edu.monash.fit2099.engine.Item;
  */
 public class GivePlanAction extends Action {
 	private Actor target;
+	private RocketBody rocketBod = new RocketBody();
 	
 	public GivePlanAction(Actor target) {
 		this.target = target;
@@ -26,7 +27,7 @@ public class GivePlanAction extends Action {
 		for(Item item: actor.getInventory()) {
 			if(item instanceof RocketPlan) {
 				actor.removeItemFromInventory(item);
-				actor.addItemToInventory(Item.newInventoryItem("Rocket Body", 'B'));
+				actor.addItemToInventory(rocketBod);
 				map.removeActor(this.target);
 				return "Q disappears with a cheery wave!";
 			}

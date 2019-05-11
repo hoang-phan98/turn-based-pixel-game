@@ -29,21 +29,24 @@ public class BuildRocketAction extends Action {
 	 */
 	public String execute(Actor actor, GameMap map) {
 		Item rocket = new Item("Rocket", 'R');
+		boolean hasBody = false;
+		boolean hasEngine = false;
 		
-		for(Item item: this.location.getItems()) {
+		for(Item item: actor.getInventory()) {
 			if(item instanceof RocketBody) {
-				for(Item item1: this.location.getItems()) {
-					if(item1 instanceof RocketEngine) {
-						map.addItem(rocket, this.location.x(), this.location.y());
-						map.add(new Floor(), this.location);
-						map.removeActor(actor);
-						return "The Rocket has been created!";
-					}
-				}
-				break;
+				hasBody = true;
 			}
-
+			if(item instanceof RocketEngine) {
+				hasEngine = true;
+			}
 		}
+		if(hasBody && hasEngine) {
+			map.addItem(rocket, this.location.x(), this.location.y());
+			map.add(new Floor(), this.location);
+			map.removeActor(actor);
+			return "The Rocket has been created!";
+		}
+
 		return "You must first collect the Rocket Body and Rocket Engine!";
 	}
 
