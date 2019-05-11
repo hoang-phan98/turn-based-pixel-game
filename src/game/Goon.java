@@ -54,7 +54,7 @@ public class Goon extends Actor {
 		}
 		
 		Action action = new DropItemAction(null);
-		while(action instanceof DropItemAction || action instanceof PickUpItemAction) {
+		while(action instanceof DropItemAction || action instanceof PickUpItemAction || action instanceof UnlockDoorAction) {
 			action = actions.get(rand.nextInt(actions.size()));
 		}
 		
