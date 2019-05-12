@@ -18,6 +18,7 @@ public class Q extends Actor{
 		super("Q", 'Q', 5, 100);
 	}
 	
+	private ActionFactory actionFactory = new WanderBehaviour();
 	
     @Override
     /**
@@ -30,5 +31,13 @@ public class Q extends Actor{
 		actions.add(new TalkToQAction());
 		return actions;
 	}
+    
+    @Override
+    /**
+     * Q wanders randomly around the map and will not attack other Actors
+     */
+    public Action playTurn(Actions actions, GameMap map, Display display) {
+    	return this.actionFactory.getAction(this, map);
+    }
 	
 }
