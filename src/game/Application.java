@@ -76,7 +76,7 @@ public class Application {
         gameMap2.addItem(teleporter2, 0, 5);
 		
 		Actor player = new StunnablePlayer("Player", '@', 1, 100);
-		world.addPlayer(player, gameMap, 5, 10);
+		world.addPlayer(player, gameMap2, 5, 11);
 		
 		Grunt grunt = new Grunt("Mongo", player);
 		gameMap.addActor(grunt, 0, 0);
@@ -103,6 +103,10 @@ public class Application {
 		Item rocketPad = new RocketPad(moonBase, rocketPadLocation);
 		gameMap2.addItem(rocketPad, 11, 5);
 		
+		FinalBoss yugoMaxx = new FinalBoss();
+		moonBase.addActor(yugoMaxx, 0, 0);
+		WaterPistol waterPistol = new WaterPistol();
+		moonBase.addItem(waterPistol, 6, 5);
 		
 		player.addItemToInventory(new RocketBody());
 		player.addItemToInventory(new RocketEngine());
