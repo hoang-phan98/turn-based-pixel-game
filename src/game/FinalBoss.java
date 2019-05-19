@@ -2,12 +2,11 @@ package game;
 
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.AttackAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.IntrinsicWeapon;
 
 public class FinalBoss extends Actor {
-	private boolean invulnerable = true;
+	protected boolean invulnerable = true;
 	
 	public FinalBoss() {
 		super("Yugo Max", 'Y', 5, 100);
@@ -34,7 +33,7 @@ public class FinalBoss extends Actor {
 	@Override
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions actions = new Actions();
-		actions.add(new AttackAction(otherActor, this));
+		actions.add(new AttackYugoAction(otherActor, this));
 		actions.add(new SquirtWaterAction(otherActor, this));
 		return actions;
 	}

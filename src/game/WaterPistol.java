@@ -6,7 +6,7 @@ public class WaterPistol extends WeaponItem {
 	protected boolean isEmpty = true;
 
 	public WaterPistol() {
-		super("Water Pistol", '*', 5, "punches");
+		super("Water Pistol", '*', 0, "squirts");
 	}
 	
 	public void empty() {

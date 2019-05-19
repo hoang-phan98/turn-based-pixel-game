@@ -20,6 +20,10 @@ public class SquirtWaterAction extends Action {
 	
 	@Override
 	public String execute(Actor actor, GameMap map) {
+		if(!((FinalBoss) this.target).invulnerable){
+			return "Yugo's exoskeleton has already been broken";
+		}
+		
 		if(!(this.weapon instanceof WaterPistol)) {
 			return "You must first find the water pistol";
 		} else {
@@ -41,7 +45,7 @@ public class SquirtWaterAction extends Action {
 
 	@Override
 	public String menuDescription(Actor actor) {
-		return "Squirt water at " + this.target;
+		return actor + " squirt water at " + this.target;
 	}
 
 	@Override
