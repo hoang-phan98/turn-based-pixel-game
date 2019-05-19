@@ -4,6 +4,7 @@ import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.Item;
 
 /**
@@ -12,23 +13,26 @@ import edu.monash.fit2099.engine.Item;
  */
 public class BuildRocketAction extends Action {
 	private Location location;
+	private GameMap mapTo;
 	
-	public BuildRocketAction(Actor actor, Location location) {
+	public BuildRocketAction(Location location, GameMap map) {
 		this.location = location;
+		this.mapTo = map;
 	}
 	
 	
 	@Override
 	/**
 	 * Checks if the location contains the Rocket Engine as well as Rocket Body
-	 * If it does, adds the Rocket to the location and removes the player,
-	 * thus ending the game
+	 * If it does, adds the Rocket to the location which the player can use to go to the Moon
 	 * 
 	 * @param actor The actor performing the action, which will be the Player
 	 * @return a description of what happened that can be displayed to the user.
 	 */
 	public String execute(Actor actor, GameMap map) {
-		Item rocket = new Item("Rocket", 'R');
+		Item rocket = new Rocket();
+		rocket.getAllowableActions().add(new MoveActorAction(mapTo.at(location.x(), location.y()), " to the Moon!"));
+		
 		boolean hasBody = false;
 		boolean hasEngine = false;
 		
@@ -41,9 +45,15 @@ public class BuildRocketAction extends Action {
 			}
 		}
 		if(hasBody && hasEngine) {
+			for(Item item: actor.getInventory()) {
+				if(item instanceof RocketBody) {
+					actor.removeItemFromInventory(item);
+				}
+				if(item instanceof RocketEngine) {
+					actor.removeItemFromInventory(item);
+				}
+			}
 			map.addItem(rocket, this.location.x(), this.location.y());
-			map.add(new Floor(), this.location);
-			map.removeActor(actor);
 			return "The Rocket has been created!";
 		}
 

@@ -1,21 +1,17 @@
 package game;
 
-import edu.monash.fit2099.engine.Actions;
-import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.Ground;
+import edu.monash.fit2099.engine.GameMap;
+import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 
 /**
- * Represents a special terrain that supports the BuildRocketAction
+ * Represents a special Item that supports the BuildRocketAction
  */
-public class RocketPad extends Ground {
+public class RocketPad extends Item {
 
-	public RocketPad() {
-		super('X');
-	}
-	
-	@Override
-	public Actions allowableActions(Actor actor, Location location, String direction){
-		return new Actions(new BuildRocketAction(actor, location));
+	public RocketPad(GameMap map, Location location) {
+		super("Rocket Pad", 'X');
+		allowableActions.clear();
+		allowableActions.add(new BuildRocketAction(location, map));
 	}
 }

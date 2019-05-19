@@ -8,6 +8,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.FancyGroundFactory;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.MoveActorAction;
 import edu.monash.fit2099.engine.World;
 
@@ -16,7 +17,7 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(), new RocketPad());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor());
 		GameMap gameMap;
 
 		List<String> map = Arrays.asList(
@@ -40,7 +41,7 @@ public class Application {
 				".......................",
 				".......................",
 				".......................",
-				"...........X...........",
+				".......................",
 				".......................",
 				".......................",
 				".......................",
@@ -49,14 +50,30 @@ public class Application {
         
         GameMap gameMap2 = new GameMap(groundFactory, map2);
         world.addMap(gameMap2);
-
-        Item rocket = Item.newFurniture("Rocket", '>');
-        rocket.getAllowableActions().add(new MoveActorAction(gameMap2.at(1, 5), "to Map 2!"));
-        gameMap.addItem(rocket, 22, 5);
         
-        Item rocket2 = Item.newFurniture("Rocket", '<');
-        rocket2.getAllowableActions().add(new MoveActorAction(gameMap.at(22, 5), "to Map 1!"));
-        gameMap2.addItem(rocket2, 0, 5);
+        List<String> moon = Arrays.asList(
+				".......................",
+				".......................",
+				".......................",
+				".......................",
+				".......................",
+				".......................",
+				".......................",
+				".......................",
+				".......................",
+				".......................",
+				".......................");
+        
+        GameMap moonBase = new GameMap(groundFactory, moon);
+        world.addMap(moonBase);
+        
+        Item teleporter1 = Item.newFurniture("Teleporter", '>');
+        teleporter1.getAllowableActions().add(new MoveActorAction(gameMap2.at(1, 5), "to Map 2!"));
+        gameMap.addItem(teleporter1, 22, 5);
+        
+        Item teleporter2 = Item.newFurniture("Teleporter", '<');
+        teleporter2.getAllowableActions().add(new MoveActorAction(gameMap.at(22, 5), "to Map 1!"));
+        gameMap2.addItem(teleporter2, 0, 5);
 		
 		Actor player = new StunnablePlayer("Player", '@', 1, 100);
 		world.addPlayer(player, gameMap, 5, 10);
@@ -77,6 +94,19 @@ public class Application {
 		
 		Item rocketPlan = new RocketPlan();
 		gameMap.addItem(rocketPlan, 6, 2);
+		
+		Item rocket = new Rocket();
+		rocket.getAllowableActions().add(new MoveActorAction(gameMap2.at(11, 5), "to Earth!"));
+		moonBase.addItem(rocket, 11, 5);
+		
+		Location rocketPadLocation = new Location(gameMap2, 11, 5);
+		Item rocketPad = new RocketPad(moonBase, rocketPadLocation);
+		gameMap2.addItem(rocketPad, 11, 5);
+		
+		
+		player.addItemToInventory(new RocketBody());
+		player.addItemToInventory(new RocketEngine());
+		
 		world.run();
 	}
 }
