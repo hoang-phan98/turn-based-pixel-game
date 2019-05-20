@@ -17,7 +17,7 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(), new Water());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(), new Water(), new RocketPadGround());
 		GameMap gameMap;
 
 		List<String> map = Arrays.asList(
@@ -41,7 +41,7 @@ public class Application {
 				".......................",
 				".......................",
 				".......................",
-				".......................",
+				"...........x...........",
 				".......................",
 				"................~~~~~~~",
 				"................~~~~~~~",
@@ -57,7 +57,7 @@ public class Application {
 				".......................",
 				".......................",
 				".......................",
-				".......................",
+				"...........x...........",
 				".......................",
 				".......................",
 				".......................",
@@ -89,6 +89,13 @@ public class Application {
 		MiniBoss DoctorMaybe = new MiniBoss("Doctor Maybe");
 		gameMap.addActor(DoctorMaybe, 16, 2);
 		
+		Grunt grunt3 = new Grunt("Monga", player);
+		gameMap2.addActor(grunt3, 0, 0);
+		Grunt grunt4 = new Grunt("Norberto", player);
+		gameMap2.addActor(grunt4,  10, 10);
+		Goon goon1 = new Goon("Hecklerb", player);
+		gameMap2.addActor(goon1, 7, 7);
+		
 		Q q = new Q();
 		gameMap2.addActor(q, 8, 8);
 		
@@ -102,6 +109,7 @@ public class Application {
 		Location rocketPadLocation = new Location(gameMap2, 11, 5);
 		Item rocketPad = new RocketPad(moonBase, rocketPadLocation);
 		gameMap2.addItem(rocketPad, 11, 5);
+		gameMap2.add(new RocketPadGround(), rocketPadLocation);
 		
 		FinalBoss yugoMaxx = new FinalBoss(player);
 		moonBase.addActor(yugoMaxx, 0, 0);
