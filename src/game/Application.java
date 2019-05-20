@@ -17,7 +17,7 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(), new Water());
 		GameMap gameMap;
 
 		List<String> map = Arrays.asList(
@@ -43,10 +43,10 @@ public class Application {
 				".......................",
 				".......................",
 				".......................",
-				".......................",
-				".......................",
-				".......................",
-				".......................");
+				"................~~~~~~~",
+				"................~~~~~~~",
+				"................~~~~~~~",
+				"................~~~~~~~");
         
         GameMap gameMap2 = new GameMap(groundFactory, map2);
         world.addMap(gameMap2);

@@ -12,4 +12,8 @@ public class WaterPistol extends WeaponItem {
 	public void empty() {
 		this.isEmpty = true;
 	}
+	
+	public void refill() {
+		this.isEmpty = false;
+	}
 }
