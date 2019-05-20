@@ -3,7 +3,6 @@ package game;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.PickUpItemAction;
-import edu.monash.fit2099.engine.DropItemAction;
 
 /**
  * An Item that can be exchanged for the RocketBody via Q

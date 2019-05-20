@@ -103,7 +103,7 @@ public class Application {
 		Item rocketPad = new RocketPad(moonBase, rocketPadLocation);
 		gameMap2.addItem(rocketPad, 11, 5);
 		
-		FinalBoss yugoMaxx = new FinalBoss();
+		FinalBoss yugoMaxx = new FinalBoss(player);
 		moonBase.addActor(yugoMaxx, 0, 0);
 		WaterPistol waterPistol = new WaterPistol();
 		moonBase.addItem(waterPistol, 6, 5);
