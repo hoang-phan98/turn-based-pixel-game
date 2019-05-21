@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>696</x>
+      <y>176</y>
+      <w>208</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>*Diagram 2 - Retrieving Oxygen Tank*
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>184</x>
+      <y>176</y>
+      <w>192</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>*Diagram 1 - SquirtWaterAction*
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>432</x>
+      <y>176</y>
+      <w>192</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>*Diagram 2 - Moving between maps*
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
