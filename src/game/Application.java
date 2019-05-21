@@ -17,7 +17,7 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(), new Water(), new RocketPadGround());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(), new Water(), new RocketPadGround(), new MoonGround());
 		GameMap earthLair;
 
 		List<String> map = Arrays.asList(
@@ -36,17 +36,17 @@ public class Application {
 		world.addMap(earthLair);
         
         List<String> moon = Arrays.asList(
-				".......................",
-				".......................",
-				".......................",
-				".......................",
-				".......................",
-				".......................",
-				".......................",
-				".......................",
-				".......................",
-				".......................",
-				"..........x............");
+				",,,,,,,,,,,,,,,,,,,,,,,",
+				",,,,,,,,,,,,,,,,,,,,,,,",
+				",,,,,,,,,,,,,,,,,,,,,,,",
+				",,,,,,,,,,,,,,,,,,,,,,,",
+				",,,,,,,,,,,,,,,,,,,,,,,",
+				",,,,,,,,,,,,,,,,,,,,,,,",
+				",,,,,,,,,,,,,,,,,,,,,,,",
+				",,,,,,,,,,,,,,,,,,,,,,,",
+				",,,,,,,,,,,,,,,,,,,,,,,",
+				",,,,,,,,,,,,,,,,,,,,,,,",
+				",,,,,,,,,,x,,,,,,,,,,,,");
         
         GameMap moonBase = new GameMap(groundFactory, moon);
         world.addMap(moonBase);
@@ -78,8 +78,8 @@ public class Application {
 		Location rocketPadLocation = new Location(earthLair, 10, 10);
 		Item rocketPad = new RocketPad(moonBase, rocketPadLocation);
 		earthLair.addItem(rocketPad, 10, 10);
-		earthLair.add(new RocketPadGround(), rocketPadLocation);
 		
+		earthLair.addItem(new SpaceSuit(), 5, 10);
 		FinalBoss yugoMaxx = new FinalBoss(player);
 		moonBase.addActor(yugoMaxx, 0, 0);
 		WaterPistol waterPistol = new WaterPistol();
