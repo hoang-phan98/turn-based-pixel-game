@@ -79,8 +79,11 @@ public class Application {
 		Item rocketPad = new RocketPad(moonBase, rocketPadLocation);
 		earthLair.addItem(rocketPad, 10, 10);
 		
+		Location OxygenDispenserLocation = new Location(earthLair, 7, 10);
+		Item oxygenDispenser = new OxygenDispenser(earthLair, OxygenDispenserLocation);
+		earthLair.addItem(oxygenDispenser, 7, 10);
+		
 		earthLair.addItem(new SpaceSuit(), 5, 10);
-		earthLair.addItem(new OxygenDispenser(), 7, 10);
 		FinalBoss yugoMaxx = new FinalBoss(player);
 		moonBase.addActor(yugoMaxx, 0, 0);
 		WaterPistol waterPistol = new WaterPistol();
