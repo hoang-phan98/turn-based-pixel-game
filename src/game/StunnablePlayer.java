@@ -39,7 +39,7 @@ public class StunnablePlayer extends Player {
 		}
 		if(map.locationOf(this).getGround() instanceof MoonGround) {
 			if(this.oxygenPoints==0) {
-				
+				//create a safety mechanism to return to earth
 			}
 			this.useOxygen();
 		}
