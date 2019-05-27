@@ -80,6 +80,7 @@ public class Application {
 		earthLair.addItem(rocketPad, 10, 10);
 		
 		earthLair.addItem(new SpaceSuit(), 5, 10);
+		earthLair.addItem(new OxygenDispenser(), 7, 10);
 		FinalBoss yugoMaxx = new FinalBoss(player);
 		moonBase.addActor(yugoMaxx, 0, 0);
 		WaterPistol waterPistol = new WaterPistol();
