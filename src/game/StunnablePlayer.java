@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.Display;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Player;
 import edu.monash.fit2099.engine.SkipTurnAction;
+import edu.monash.fit2099.engine.Item;
 
 /**
  * An extension of the Player class that supports the Stun effect of Ninjas
@@ -13,6 +14,7 @@ import edu.monash.fit2099.engine.SkipTurnAction;
 public class StunnablePlayer extends Player {
 	
 	private int stunCounter = 0;
+	private int oxygenPoints = 0;
 	
 	public StunnablePlayer(String name, char displayChar, int priority, int hitPoints) {
 		super(name, displayChar, priority, hitPoints);
@@ -28,6 +30,18 @@ public class StunnablePlayer extends Player {
 		if(this.stunCounter > 0) {
 			this.decreaseStunCounter();
 			return new SkipTurnAction();
+		}
+		for(Item item: this.getInventory()) {
+			if(item instanceof OxygenTank) {
+				this.oxygenPoints += 10;
+				this.removeItemFromInventory(item);
+			}
+		}
+		if(map.locationOf(this).getGround() instanceof MoonGround) {
+			if(this.oxygenPoints==0) {
+				
+			}
+			this.useOxygen();
 		}
 		return super.playTurn(actions, map, display);
 	}
@@ -45,6 +59,10 @@ public class StunnablePlayer extends Player {
 	 */
 	public void decreaseStunCounter() {
 		this.stunCounter -= 1;
+	}
+	
+	public void useOxygen() {
+		this.oxygenPoints -= 1;
 	}
 	
 	/**
