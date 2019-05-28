@@ -11,7 +11,7 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.Weapon;
 
-public class InsultBehaviour extends Action implements ActionFactory {
+public class InsultBehaviour extends Action {
 //	private Actor actor;
 	private Actor target;
 	private Random rand= new Random();
@@ -36,68 +36,20 @@ public class InsultBehaviour extends Action implements ActionFactory {
 	@Override
 	public String execute(Actor actor, GameMap map) {
 
-		Weapon weapon = actor.getWeapon();
-		int damage = weapon.damage();
-		
-
-		if (rand.nextBoolean()) {
-			return actor + " misses " + target + ".";
-		}
-		if (rand.nextDouble()<0.1) {
-			chance = rand.nextDouble()*100;
-			if (chance<3) {
-				result = actor + " yells " + listOfInsults[0] + " and " +weapon.verb() + " " + target + " for " + damage + " damage.";
+			chance = rand.nextDouble();
+			if (chance<0.3) {
+				result = actor + " yells " + listOfInsults[0];
 			}
-			else if (chance<6) {
-				result = actor + " yells " + listOfInsults[1] + " and " +weapon.verb() + " " + target + " for " + damage + " damage.";
+			else if (chance<0.6) {
+				result = actor + " yells " + listOfInsults[1];
 			}
-			else if (chance<9) {
-				result = actor + " yells " + listOfInsults[2] + " and " +weapon.verb() + " " + target + " for " + damage + " damage.";
+			else if (chance<0.9) {
+				result = actor + " yells " + listOfInsults[2];
 			}
-		}
-		else {
-			result = actor + " " + weapon.verb() + " " + target + " for " + damage + " damage.";
-		}
-
-
-		target.hurt(damage);
-		if (!target.isConscious()) {
-			//Drop all the items that are droppable. 
-			Item sleepingActor = new Item("Sleeping " + target, '%');
-			map.locationOf(target).addItem(sleepingActor);
-			for (Item item : target.getInventory()) {
-				for (Action action : item.getAllowableActions()) {
-					if (action instanceof DropItemAction) {
-						action.execute(target, map);
-						break;
-					}
-				}
-			}
-			map.removeActor(target);
-			result += System.lineSeparator() + target + " is knocked out.";
-		}
-
 		return result;
 
 	}
-	/**
-	 * Overrides ActionFactory.getAction(Actor,GameMap)
-	 * 
-	 * @param actor The actor performing the action.
-	 * @param map The map the actor is on.
-	 * @return this Action if the target is next to the actor, null otherwise
-	 */
-	@Override
-	public Action getAction(Actor actor, GameMap map) {
-		Location here = map.locationOf(actor);
-		Location there = map.locationOf(target);
-		for (Exit exit : here.getExits()) {
-			if (exit.getDestination() == there) {
-				return this;
-			}
-		}
-		return null;
-	}
+
 	/**
 	 * Overrides Action.menuDescription()
 	 *
@@ -105,7 +57,7 @@ public class InsultBehaviour extends Action implements ActionFactory {
 	 */
 	@Override
 	public String menuDescription(Actor actor) {
-		return actor + " attacks " + target;
+		return actor + " insults " + target;
 	}
 	/**
 	 * Overrides Action.hotKey()

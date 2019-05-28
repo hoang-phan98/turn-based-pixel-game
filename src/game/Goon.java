@@ -11,6 +11,7 @@ import edu.monash.fit2099.engine.*;
  */
 public class Goon extends Actor {
 	private Random rand = new Random();
+	private Actor target;
 	
 	double ranInt = Math.random();
 	
@@ -23,7 +24,7 @@ public class Goon extends Actor {
 		Item key = new Key();
 		this.addItemToInventory(key);
 		addBehaviour(new FollowBehaviour(player));
-		addBehaviour(new InsultBehaviour(player));
+		this.target = player;
 	}
 
 	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();
@@ -47,6 +48,9 @@ public class Goon extends Actor {
 	 * PickUpItem.
 	 */
 	public Action playTurn(Actions actions, GameMap map, Display display) {
+		if(ranInt < 0.1) {
+			return new InsultBehaviour(target);
+		}
 		for (ActionFactory factory : actionFactories) {
 			Action action = factory.getAction(this, map);
 			if(action != null)
