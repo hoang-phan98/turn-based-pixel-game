@@ -11,7 +11,7 @@ import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
 import edu.monash.fit2099.engine.Weapon;
 
-public class InsultBehaviour extends Action {
+public class InsultAction extends Action {
 //	private Actor actor;
 	private Actor target;
 	private Random rand= new Random();
@@ -21,7 +21,7 @@ public class InsultBehaviour extends Action {
 	
 //	private List<String> listOfInsults = new ArrayList<String>();
 
-	public InsultBehaviour(Actor target) {
+	public InsultAction(Actor target) {
 //		this.actor = actor;
 		this.target = target;
 	}

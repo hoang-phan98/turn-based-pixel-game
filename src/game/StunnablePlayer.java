@@ -7,12 +7,13 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Player;
 import edu.monash.fit2099.engine.SkipTurnAction;
 import edu.monash.fit2099.engine.Item;
+import edu.monash.fit2099.engine.Location;
 
 /**
  * An extension of the Player class that supports the Stun effect of Ninjas
  */
 public class StunnablePlayer extends Player {
-	
+	private Location safety;
 	private int stunCounter = 0;
 	private int oxygenPoints = 0;
 	

@@ -49,7 +49,7 @@ public class Goon extends Actor {
 	 */
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		if(ranInt < 0.1) {
-			return new InsultBehaviour(target);
+			return new InsultAction(target);
 		}
 		for (ActionFactory factory : actionFactories) {
 			Action action = factory.getAction(this, map);
