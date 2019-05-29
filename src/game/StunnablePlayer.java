@@ -28,6 +28,9 @@ public class StunnablePlayer extends Player {
 	 * Otherwise behaves exactly as the original Player class
 	 */
 	public Action playTurn(Actions actions, GameMap map, Display display) {
+		if(map.groundAt(map.locationOf(this)) instanceof Floor) {
+			this.safety = map.locationOf(this);
+		}
 		if(this.stunCounter > 0) {
 			this.decreaseStunCounter();
 			return new SkipTurnAction();
@@ -40,7 +43,7 @@ public class StunnablePlayer extends Player {
 		}
 		if(map.locationOf(this).getGround() instanceof MoonGround) {
 			if(this.oxygenPoints==0) {
-				//create a safety mechanism to return to earth
+				return new ReturnToEarthAction(this.safety, this);
 			}
 			this.useOxygen();
 		}
@@ -65,6 +68,10 @@ public class StunnablePlayer extends Player {
 	public void useOxygen() {
 		this.oxygenPoints -= 1;
 	}
+	
+//	public Location findSafety() {
+//		return this.safety;
+//	}
 	
 	/**
 	 * @return The current value of the stun counter
