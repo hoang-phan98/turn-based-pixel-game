@@ -1,24 +1,31 @@
 package game;
 
+import java.util.Random;
+
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
+import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Player;
 import edu.monash.fit2099.engine.SkipTurnAction;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
+import edu.monash.fit2099.engine.PickUpItemAction;
 
 /**
  * An extension of the Player class that supports the Stun effect of Ninjas
  */
 public class StunnablePlayer extends Player {
 	private Location safety;
+	private Random rand = new Random();
 	private int stunCounter = 0;
 	private int oxygenPoints = 0;
+//	private boolean turnHold = false;
 	
 	public StunnablePlayer(String name, char displayChar, int priority, int hitPoints) {
 		super(name, displayChar, priority, hitPoints);
+		this.addSkill(Skills.SPACETRAVELLER);
 	}
 	
 	@Override
@@ -30,6 +37,14 @@ public class StunnablePlayer extends Player {
 	public Action playTurn(Actions actions, GameMap map, Display display) {
 		if(map.groundAt(map.locationOf(this)) instanceof Floor) {
 			this.safety = map.locationOf(this);
+		}
+		if(this.hasSkill(Skills.PATIENCE)) {
+			Action action = new PickUpItemAction(null);
+			while(action instanceof PickUpItemAction || action instanceof ProduceOxygenTankAction) {
+				action = actions.get(rand.nextInt(actions.size()));
+				this.removeSkill(Skills.PATIENCE);
+				return action;
+			}
 		}
 		if(this.stunCounter > 0) {
 			this.decreaseStunCounter();
@@ -68,6 +83,12 @@ public class StunnablePlayer extends Player {
 	public void useOxygen() {
 		this.oxygenPoints -= 1;
 	}
+//	public void hold() {
+//		this.turnHold = true;
+//	}
+//	public void removeHold() {
+//		this.turnHold = false;
+//	}
 	
 //	public Location findSafety() {
 //		return this.safety;

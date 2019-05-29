@@ -5,15 +5,12 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Location;
-import edu.monash.fit2099.engine.MoveActorAction; 
  
 public class ProduceOxygenTankAction extends Action {  
 	private Location location;
-	private GameMap mapTo;
 	
 	public ProduceOxygenTankAction(Location location, GameMap map) {
 		this.location = location;
-		this.mapTo = map;
 	}
 	
 	@Override
@@ -27,6 +24,7 @@ public class ProduceOxygenTankAction extends Action {
 	public String execute(Actor actor, GameMap map) {
 		Item oxygenTank = new OxygenTank();
 		map.addItem(oxygenTank, this.location.x(), this.location.y());
+		actor.addSkill(Skills.PATIENCE);
 		return "Oxygen Tank has been dispensed!";
 	}
 
