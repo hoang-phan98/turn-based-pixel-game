@@ -17,7 +17,8 @@ public class Application {
 	public static void main(String[] args) {
 		World world = new World(new Display());
 
-		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(), new Water(), new RocketPadGround(), new MoonGround());
+		FancyGroundFactory groundFactory = new FancyGroundFactory(new Floor(), new Wall(), new LockedDoor(), new Water(), new RocketPadGround());
+		FancyGroundFactory moonFactory = new FancyGroundFactory(new MoonGround());
 		GameMap earthLair;
 
 		List<String> map = Arrays.asList(
@@ -48,7 +49,7 @@ public class Application {
 				",,,,,,,,,,,,,,,,,,,,,,,",
 				",,,,,,,,,,x,,,,,,,,,,,,");
         
-        GameMap moonBase = new GameMap(groundFactory, moon);
+        GameMap moonBase = new GameMap(moonFactory, moon);
         world.addMap(moonBase);
 		
 		Actor player = new StunnablePlayer("Player", '@', 1, 100);
