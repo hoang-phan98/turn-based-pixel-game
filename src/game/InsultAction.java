@@ -4,12 +4,7 @@ import java.util.Random;
 
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actor;
-import edu.monash.fit2099.engine.DropItemAction;
-import edu.monash.fit2099.engine.Exit;
 import edu.monash.fit2099.engine.GameMap;
-import edu.monash.fit2099.engine.Item;
-import edu.monash.fit2099.engine.Location;
-import edu.monash.fit2099.engine.Weapon;
 
 public class InsultAction extends Action {
 //	private Actor actor;

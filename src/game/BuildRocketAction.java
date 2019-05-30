@@ -15,6 +15,11 @@ public class BuildRocketAction extends Action {
 	private Location location;
 	private GameMap mapTo;
 	
+	/**
+	 * Constructor for the class
+	 * @param location the location of the rocket/rocket pad
+	 * @param map the map that the rocket will travel to
+	 */
 	public BuildRocketAction(Location location, GameMap map) {
 		this.location = location;
 		this.mapTo = map;

@@ -13,12 +13,23 @@ import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.PickUpItemAction;
 
+/**
+ * Extension of the Actor class which represents the Final Boss, Yugo Maxx
+ * He does the same damage as a Goon, and is invulnerable while his exoskeleton
+ * stays intact
+ */
 public class FinalBoss extends Actor {
 	protected boolean invulnerable = true;
 	private Random rand = new Random();
 	
+	/**
+	 * Yugo Maxx follows the player by default and has cybernetic enhancement
+	 * which allows him to move around on the moon freely
+	 * 
+	 * @param player the player to be followed
+	 */
 	public FinalBoss(Actor player) {
-		super("Yugo Max", 'Y', 5, 100);
+		super("Yugo Maxx", 'Y', 5, 100);
 		addBehaviour(new FollowBehaviour(player));
 		this.addSkill(Skills.CYBERENHANCEMENT);
 	}
@@ -31,6 +42,9 @@ public class FinalBoss extends Actor {
 
 	
 	@Override
+	/**
+	 * Does no damage if Yugo Maxx is invulnerable
+	 */
 	public void hurt(int hitpoint) {
 		if(this.invulnerable) {
 			return;
@@ -39,16 +53,26 @@ public class FinalBoss extends Actor {
 		}
 	}
 	
+	/**
+	 * Breaks Yugo Maxx's exoskeleton and his invulnerability status
+	 */
 	public void breakExoskeleton() {
 		this.invulnerable = false;
 	}
 	
 	@Override
+	/**
+	 * Yugo Maxx does the same damage as a Goon
+	 */
 	protected IntrinsicWeapon getIntrinsicWeapon() {
 		return new IntrinsicWeapon(8, "eviscerates");
 	}
 	
 	@Override
+	/**
+	 * Other Actors may either attack Yugo, or squirt water at him
+	 * in order to break his armour
+	 */
 	public Actions getAllowableActions(Actor otherActor, String direction, GameMap map) {
 		Actions actions = new Actions();
 		actions.add(new AttackYugoAction(otherActor, this));

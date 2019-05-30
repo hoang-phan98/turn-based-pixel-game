@@ -10,18 +10,36 @@ import edu.monash.fit2099.engine.IntrinsicWeapon;
 import edu.monash.fit2099.engine.Item;
 import edu.monash.fit2099.engine.Weapon;
 
+/**
+ * 
+ * @author Hoang
+ * Represents a special attack action that can only be used against the final
+ * boss Yugo Maxx. This action checks whether or not Yugo still has his 
+ * exoskeleton, and negates the damage accordingly
+ */
 public class AttackYugoAction extends Action {
 	
 	protected Actor actor;
 	protected Actor subject;
 	protected Random rand = new Random();
 
+	/**
+	 * Constructor for the class
+	 * @param actor The actor performing the action
+	 * @param subject The actor being attacked
+	 */
 	public AttackYugoAction(Actor actor, Actor subject) {
 		this.actor = actor;
 		this.subject = subject;
 	}
 	
 	@Override
+	/**
+	 * If Yugo Maxx is invulnerable, does nothing and return
+	 * If the actor has a water pistol, this does no damage and thus is replaced
+	 * with an intrinsic weapon
+	 * Otherwise behaves just like the AttackAction
+	 */
 	public String execute(Actor actor, GameMap map) {
 		if(((FinalBoss) this.subject).invulnerable) {
 			return subject + " is invulnerable!";

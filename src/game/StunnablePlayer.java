@@ -5,7 +5,6 @@ import java.util.Random;
 import edu.monash.fit2099.engine.Action;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Display;
-import edu.monash.fit2099.engine.DropItemAction;
 import edu.monash.fit2099.engine.GameMap;
 import edu.monash.fit2099.engine.Player;
 import edu.monash.fit2099.engine.SkipTurnAction;
@@ -21,7 +20,6 @@ public class StunnablePlayer extends Player {
 	private Random rand = new Random();
 	private int stunCounter = 0;
 	private int oxygenPoints = 0;
-//	private boolean turnHold = false;
 	
 	public StunnablePlayer(String name, char displayChar, int priority, int hitPoints) {
 		super(name, displayChar, priority, hitPoints);
@@ -82,16 +80,6 @@ public class StunnablePlayer extends Player {
 	public void useOxygen() {
 		this.oxygenPoints -= 1;
 	}
-//	public void hold() {
-//		this.turnHold = true;
-//	}
-//	public void removeHold() {
-//		this.turnHold = false;
-//	}
-	
-//	public Location findSafety() {
-//		return this.safety;
-//	}
 	
 	/**
 	 * @return The current value of the stun counter

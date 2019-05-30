@@ -1,6 +1,5 @@
 package game;
 
-import edu.monash.fit2099.demo.WindowSmashAction;
 import edu.monash.fit2099.engine.Actions;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
