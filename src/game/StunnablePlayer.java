@@ -25,7 +25,6 @@ public class StunnablePlayer extends Player {
 	
 	public StunnablePlayer(String name, char displayChar, int priority, int hitPoints) {
 		super(name, displayChar, priority, hitPoints);
-		this.addSkill(Skills.SPACETRAVELLER);
 	}
 	
 	@Override
@@ -96,7 +95,7 @@ public class StunnablePlayer extends Player {
 	
 	/**
 	 * @return The current value of the stun counter
-	 * @return
+	 * 
 	 */
 	public int getStunCounter() {
 		return this.stunCounter;

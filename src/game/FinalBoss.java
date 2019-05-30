@@ -20,7 +20,7 @@ public class FinalBoss extends Actor {
 	public FinalBoss(Actor player) {
 		super("Yugo Max", 'Y', 5, 100);
 		addBehaviour(new FollowBehaviour(player));
-		this.addSkill(Skills.SPACETRAVELLER);
+		this.addSkill(Skills.CYBERENHANCEMENT);
 	}
 	
 	private List<ActionFactory> actionFactories = new ArrayList<ActionFactory>();

@@ -1,5 +1,5 @@
 package game;
 
 public enum Skills {
-	SPACETRAVELLER, PATIENCE;
+	SPACETRAVELLER, PATIENCE, CYBERENHANCEMENT;
 }

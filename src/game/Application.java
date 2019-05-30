@@ -89,6 +89,16 @@ public class Application {
 		WaterPistol waterPistol = new WaterPistol();
 		moonBase.addItem(waterPistol, 6, 5);
 		
+		Grunt moonGrunt = new Grunt("Norbert", player);
+		moonGrunt.addSkill(Skills.CYBERENHANCEMENT);
+		moonBase.addActor(moonGrunt,  22, 0);
+		Ninja moonNinja = new Ninja("Ninja", player);
+		moonNinja.addSkill(Skills.CYBERENHANCEMENT);
+		moonBase.addActor(moonNinja, 3, 5);
+		Goon moonGoon = new Goon("Heckler", player);
+		moonGoon.addSkill(Skills.CYBERENHANCEMENT);
+		moonBase.addActor(moonGoon, 0, 10);
+		
 		player.addItemToInventory(new RocketBody());
 		player.addItemToInventory(new RocketEngine());
 		

@@ -53,7 +53,7 @@ public class ReturnToEarthAction extends Action {
 	 */
 	@Override
 	public String menuDescription(Actor actor) {
-		return actor + "out of air, safety removed back to Earth!";
+		return actor + " out of air, safety removed back to Earth!";
 	}
 
 	/**

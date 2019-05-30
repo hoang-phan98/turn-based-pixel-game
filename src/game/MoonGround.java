@@ -1,8 +1,8 @@
 package game;
 
-import edu.monash.fit2099.demo.DemoSkills;
 import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.Ground;
+import edu.monash.fit2099.engine.Item;
 
 public class MoonGround extends Ground {
 
@@ -12,6 +12,17 @@ public class MoonGround extends Ground {
 	
 	@Override
 	public boolean canActorEnter(Actor a) {
-		return a.hasSkill(Skills.SPACETRAVELLER);
+		
+		if( a.hasSkill(Skills.CYBERENHANCEMENT)) {
+			return true;
+		}
+		
+		for(Item item : a.getInventory()) {
+			if(item.hasSkill(Skills.SPACETRAVELLER)) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }
