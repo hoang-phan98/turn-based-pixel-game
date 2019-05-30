@@ -36,17 +36,19 @@ public class BuildRocketAction extends Action {
 	 */
 	public String execute(Actor actor, GameMap map) {
 		Item rocket = new Rocket();
-		rocket.getAllowableActions().add(new MoveActorAction(mapTo.at(location.x(), location.y()), " to the Moon!"));
+		rocket.getAllowableActions().add(new SpaceTravelAction(mapTo.at(location.x(), location.y()), " to the Moon!"));	
 		
 		boolean hasBody = false;
 		boolean hasEngine = false;
 		
-		for(Item item: map.locationOf(actor).getItems()) {
+		for(Item item: actor.getInventory()) {
 			if(item instanceof RocketBody) {
 				hasBody = true;
+				actor.removeItemFromInventory(item);
 			}
 			if(item instanceof RocketEngine) {
 				hasEngine = true;
+				actor.removeItemFromInventory(item);
 			}
 		}
 		

@@ -17,7 +17,6 @@ import edu.monash.fit2099.engine.PickUpItemAction;
  */
 public class StunnablePlayer extends Player {
 	private Location safety;
-	private Random rand = new Random();
 	private int stunCounter = 0;
 	private int oxygenPoints = 0;
 	
@@ -36,13 +35,17 @@ public class StunnablePlayer extends Player {
 			this.safety = map.locationOf(this);
 		}
 		if(this.hasSkill(Skills.PATIENCE)) {
-			Action action = new PickUpItemAction(null);
-			while(action instanceof PickUpItemAction || action instanceof ProduceOxygenTankAction) {
-				action = actions.get(rand.nextInt(actions.size()));
-				this.removeSkill(Skills.PATIENCE);
-				return action;
+			for(Action action: actions) {
+				if(action instanceof PickUpItemAction) {
+					actions.remove(action);
+				}
+				if(action instanceof ProduceOxygenTankAction) {
+					actions.remove(action);
+				}
 			}
+			this.removeSkill(Skills.PATIENCE);
 		}
+		
 		if(this.stunCounter > 0) {
 			this.decreaseStunCounter();
 			return new SkipTurnAction();

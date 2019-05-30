@@ -19,7 +19,7 @@ import edu.monash.fit2099.engine.Location;
 public class OxygenDispenser extends Item {
 
 	public OxygenDispenser(GameMap map, Location location) {
-		super("Oxygen Dispenser", 'O');
+		super("Oxygen Dispenser", 'D');
 			allowableActions.clear();
 			allowableActions.add(new ProduceOxygenTankAction(location, map));
 	}

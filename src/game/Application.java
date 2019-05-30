@@ -52,7 +52,7 @@ public class Application {
         world.addMap(moonBase);
 		
 		Actor player = new StunnablePlayer("Player", '@', 1, 100);
-		world.addPlayer(player, earthLair, 5, 10);
+		world.addPlayer(player, earthLair, 8, 10);
 		
 		// Populating the Earth Lair
 		Grunt grunt = new Grunt("Mongo", player);
@@ -74,7 +74,7 @@ public class Application {
 		
 		// Adding a rocket to the moon base which teleports the player back to Earth
 		Item rocket = new Rocket();
-		rocket.getAllowableActions().add(new MoveActorAction(earthLair.at(10, 10), "to Earth!"));
+		rocket.getAllowableActions().add(new SpaceTravelAction(earthLair.at(10, 10), "to Earth!"));
 		moonBase.addItem(rocket, 10, 10);
 		
 		// Creating a new Rocket Pad item that is used to build the rocket on earth
