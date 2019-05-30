@@ -13,8 +13,6 @@ public class Goon extends Actor {
 	private Random rand = new Random();
 	private Actor target;
 	
-	double ranInt = Math.random();
-	
 	/**
 	 * Goons will have 10hp and is represented with an 'o'
 	 */
@@ -48,7 +46,8 @@ public class Goon extends Actor {
 	 * PickUpItem.
 	 */
 	public Action playTurn(Actions actions, GameMap map, Display display) {
-		if(ranInt < 0.1) {
+		int ranInt = rand.nextInt(10);
+		if(ranInt < 1) {
 			return new InsultAction(target);
 		}
 		for (ActionFactory factory : actionFactories) {
