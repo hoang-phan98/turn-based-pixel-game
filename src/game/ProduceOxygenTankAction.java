@@ -15,10 +15,11 @@ public class ProduceOxygenTankAction extends Action {
 	
 	@Override
 	/**
-	 * Checks if the location contains the Rocket Engine as well as Rocket Body
-	 * If it does, adds the Rocket to the location which the player can use to go to the Moon
+	 * Creates a new OxygenTank Item and adds it to the input location.
+	 * Adds the skill PATIENCE to the actor performing the action.
 	 * 
 	 * @param actor The actor performing the action, which will be the Player
+	 * @param map The map the actor is on
 	 * @return a description of what happened that can be displayed to the user.
 	 */
 	public String execute(Actor actor, GameMap map) {

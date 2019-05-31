@@ -15,14 +15,11 @@ public class ReturnToEarthAction extends Action {
 	private Actor actor;
 
 	/**
-	 * Constructor to create an Action that will move the Actor to a Location in a given Direction.  A currently-unused
-	 * menu hotkey will be assigned.
+	 * Constructor to create an Action that will move the Actor to a given Location.
 	 *
-	 * Note that this constructor does not check whether the supplied Location is actually in the given direction
-	 * from the Actor's current location.  This allows for (e.g.) teleporters, etc.
 	 *
 	 * @param moveToLocation Location to move to
-	 * @param direction String describing the direction to move in, e.g. "north"
+	 * @param actor The actor being moved
 	 */
 	public ReturnToEarthAction(Location moveToLocation, Actor actor) {
 		this.moveToLocation = moveToLocation;
@@ -49,7 +46,7 @@ public class ReturnToEarthAction extends Action {
 	 * Returns a description of this movement suitable to display in the menu.
 	 *
 	 * @param actor The actor performing the action.
-	 * @return a String, e.g. "Player moves east"
+	 * @return a String, description of what the action has executed
 	 */
 	@Override
 	public String menuDescription(Actor actor) {

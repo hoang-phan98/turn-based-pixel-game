@@ -7,17 +7,16 @@ import edu.monash.fit2099.engine.Actor;
 import edu.monash.fit2099.engine.GameMap;
 
 public class InsultAction extends Action {
-//	private Actor actor;
 	private Actor target;
 	private Random rand= new Random();
 	private Double chance;
 	private String result;
 	private String[] listOfInsults = {"You will never succeed","You've gained weight","Your hairline is receeding"};
-	
-//	private List<String> listOfInsults = new ArrayList<String>();
-
+	 /**
+	  * 
+	  * @param target The actor which the action is performed on
+	  */
 	public InsultAction(Actor target) {
-//		this.actor = actor;
 		this.target = target;
 	}
 	/**

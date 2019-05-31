@@ -18,7 +18,7 @@ import edu.monash.fit2099.engine.PickUpItemAction;
 public class StunnablePlayer extends Player {
 	private Location safety;
 	private int stunCounter = 0;
-	private int oxygenPoints = 0;
+	private int oxygenStore = 0;
 	
 	public StunnablePlayer(String name, char displayChar, int priority, int hitPoints) {
 		super(name, displayChar, priority, hitPoints);
@@ -54,7 +54,7 @@ public class StunnablePlayer extends Player {
 			}
 		}
 		if(map.locationOf(this).getGround() instanceof MoonGround) {
-			if(this.oxygenPoints==0) {
+			if(this.oxygenStore==0) {
 				return new ReturnToEarthAction(this.safety, this);
 			}
 			this.useOxygen();
@@ -76,15 +76,21 @@ public class StunnablePlayer extends Player {
 	public void decreaseStunCounter() {
 		this.stunCounter -= 1;
 	}
-	
+	/**
+	 * Increases Oxygen store by 10
+	 */
 	public void stockUpOxygen() {
-		this.oxygenPoints += 10;
+		this.oxygenStore += 10;
 	}
-	
+	/**
+	 * Decreases Oxygen store by 1
+	 */
 	public void useOxygen() {
-		this.oxygenPoints -= 1;
+		this.oxygenStore -= 1;
 	}
-	
+	/**
+	 * @param safety The safety location tp return to when out of Oxygen
+	 */
 	public void setSafety(Location safety) {
 		this.safety = safety;
 	}
