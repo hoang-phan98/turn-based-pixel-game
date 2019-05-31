@@ -6,7 +6,7 @@ public class SpaceSuit extends Item {
 
 	public SpaceSuit() {
 		super("Space suit", 'S');
-		this.addSkill(Skills.SPACETRAVELLER);
+		this.addSkill(Skills.MOONWALKER);
 	}
 	
 }

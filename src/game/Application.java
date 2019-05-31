@@ -72,7 +72,7 @@ public class Application {
 		earthLair.addItem(rocketPlan, 6, 2);
 		
 		Item rocket = new Rocket();
-		rocket.getAllowableActions().add(new SpaceTravelAction(earthLair.at(10, 10), "to Earth!"));
+		rocket.getAllowableActions().add(new MoveActorAction(earthLair.at(10, 10), "to Earth!"));
 		moonBase.addItem(rocket, 10, 10);
 		
 		Location rocketPadLocation = new Location(earthLair, 10, 10);

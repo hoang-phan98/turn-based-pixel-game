@@ -18,7 +18,7 @@ public class MoonGround extends Ground {
 		}
 		
 		for(Item item : a.getInventory()) {
-			if(item.hasSkill(Skills.SPACETRAVELLER)) {
+			if(item.hasSkill(Skills.MOONWALKER)) {
 				return true;
 			}
 		}
