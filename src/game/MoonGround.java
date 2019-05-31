@@ -21,16 +21,10 @@ public class MoonGround extends Ground {
 	 */
 	public boolean canActorEnter(Actor a) {
 		
-		if( a.hasSkill(Skills.CYBERENHANCEMENT)) {
+		if( a.hasSkill(Skills.CYBERENHANCEMENT) || a.hasSkill(Skills.MOONWALKER)) {
 			return true;
 		}
-		
-		for(Item item : a.getInventory()) {
-			if(item.hasSkill(Skills.MOONWALKER)) {
-				return true;
-			}
-		}
-		
+			
 		return false;
 	}
 }
