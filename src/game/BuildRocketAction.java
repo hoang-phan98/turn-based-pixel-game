@@ -55,6 +55,7 @@ public class BuildRocketAction extends Action {
 				item.getAllowableActions().clear();
 			}
 			map.addItem(rocket, this.location.x(), this.location.y());
+			((StunnablePlayer) actor).setSafety(map.locationOf(actor));
 			return "The Rocket has been created!";
 		}
 

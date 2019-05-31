@@ -31,9 +31,6 @@ public class StunnablePlayer extends Player {
 	 * Otherwise behaves exactly as the original Player class
 	 */
 	public Action playTurn(Actions actions, GameMap map, Display display) {
-		if(map.groundAt(map.locationOf(this)) instanceof Floor) {
-			this.safety = map.locationOf(this);
-		}
 		if(this.hasSkill(Skills.PATIENCE)) {
 			for(Action action: actions) {
 				if(action instanceof PickUpItemAction) {
@@ -86,6 +83,10 @@ public class StunnablePlayer extends Player {
 	
 	public void useOxygen() {
 		this.oxygenPoints -= 1;
+	}
+	
+	public void setSafety(Location safety) {
+		this.safety = safety;
 	}
 	
 	/**
