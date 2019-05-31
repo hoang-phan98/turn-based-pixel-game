@@ -41,14 +41,12 @@ public class BuildRocketAction extends Action {
 		boolean hasBody = false;
 		boolean hasEngine = false;
 		
-		for(Item item: actor.getInventory()) {
+		for(Item item: map.locationOf(actor).getItems()) {
 			if(item instanceof RocketBody) {
 				hasBody = true;
-				actor.removeItemFromInventory(item);
 			}
 			if(item instanceof RocketEngine) {
 				hasEngine = true;
-				actor.removeItemFromInventory(item);
 			}
 		}
 		
