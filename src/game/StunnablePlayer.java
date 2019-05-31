@@ -52,7 +52,7 @@ public class StunnablePlayer extends Player {
 		}
 		for(Item item: this.getInventory()) {
 			if(item instanceof OxygenTank) {
-				this.oxygenPoints += 10;
+				this.stockUpOxygen();
 				this.removeItemFromInventory(item);
 			}
 		}
@@ -78,6 +78,10 @@ public class StunnablePlayer extends Player {
 	 */
 	public void decreaseStunCounter() {
 		this.stunCounter -= 1;
+	}
+	
+	public void stockUpOxygen() {
+		this.oxygenPoints += 10;
 	}
 	
 	public void useOxygen() {
