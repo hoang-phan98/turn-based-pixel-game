@@ -17,6 +17,7 @@ public class StunnablePlayer extends Player {
 	private Location safety;
 	private int stunCounter = 0;
 	private int oxygenStore = 0;
+	private Action quit = new QuitGame(this);
 	
 	public StunnablePlayer(String name, char displayChar, int priority, int hitPoints) {
 		super(name, displayChar, priority, hitPoints);
@@ -29,6 +30,7 @@ public class StunnablePlayer extends Player {
 	 * Otherwise behaves exactly as the original Player class
 	 */
 	public Action playTurn(Actions actions, GameMap map, Display display) {
+		actions.add(this.quit);
 		if(this.hasSkill(Skills.PATIENCE)) {
 			for(Action action: actions) {
 				if(action instanceof PickUpItemAction) {
@@ -93,6 +95,10 @@ public class StunnablePlayer extends Player {
 		this.safety = safety;
 	}
 	
+
+	public Location getSafety() {
+		return this.safety;
+	}
 	/**
 	 * @return The current value of the stun counter
 	 * 
