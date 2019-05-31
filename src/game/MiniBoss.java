@@ -1,10 +1,6 @@
 package game;
 
 import java.util.Random;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import edu.monash.fit2099.engine.*;
 
 /**
